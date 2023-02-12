@@ -6,9 +6,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class turnToCone extends CommandBase {
+public class TurnToCone extends CommandBase {
   /** Creates a new turnToCone. */
-  public turnToCone() {
+  public TurnToCone() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -17,6 +17,9 @@ public class turnToCone extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
+  /**
+   * @Description Put code in here that you want called frequently.
+   */
   @Override
   public void execute() {}
 
