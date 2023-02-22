@@ -4,15 +4,13 @@
 
 package frc.robot;
 
-import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.JoystickConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveSubSystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 /**
@@ -31,8 +29,9 @@ public class RobotContainer {
   private final DriveSubSystem pizzaDriveSubSystem = new DriveSubSystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final Joystick leftJoystick = new Joystick(1);
-  private final Joystick rightJoystick = new Joystick(0);
+  private final Joystick leftJoystick = new Joystick(JoystickConstants.kDriverControllerPort_L);
+  private final Joystick rightJoystick = new Joystick(JoystickConstants.kDriverControllerPort_R);
+  private final Joystick operatorJoystick = new Joystick(JoystickConstants.kOperatorControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -40,7 +39,7 @@ public class RobotContainer {
     configureBindings();
 
     pizzaDriveSubSystem.setDefaultCommand(new RunCommand(() ->
-     pizzaDriveSubSystem.setRaw(leftJoystick.getY(), rightJoystick.getX()), pizzaDriveSubSystem));
+     pizzaDriveSubSystem.setSpeed(leftJoystick.getY(), rightJoystick.getX()), pizzaDriveSubSystem));
 
   }
 
@@ -55,8 +54,9 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+              
+              // new Trigger(m_exampleSubsystem::exampleCondition)
+              //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
